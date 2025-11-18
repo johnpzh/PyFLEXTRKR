@@ -1,3 +1,9 @@
+# Output #
+##########
+output*
+*.png
+R_*
+
 # Python #
 ##########
 */__pycache__/*
@@ -6,9 +12,11 @@ dask-worker-space/*
 .ipynb_checkpoints
 *.egg-info
 pyflextrkr.egg-info/*
+.vscode/
 
 # Datafiles
 ###########
+data
 *.nc
 *.cdf
 *.out
