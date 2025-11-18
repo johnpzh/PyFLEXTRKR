@@ -375,29 +375,29 @@ def convert_to_cftime(datetime, calendar):
         return cftime.Datetime360Day(datetime.year, datetime.month, datetime.day, datetime.hour, datetime.minute)
     else:
         raise ValueError(f"Unsupported calendar type: {calendar}")
-    
+
 def convert_cftime_to_standard(cftime_times):
     """
     Convert cftime objects to pandas Timestamps (proleptic_gregorian calendar)
-    
+
     Args:
         cftime_times: cftime object or array-like
             Single cftime datetime object or array of cftime datetime objects
-    
+
     Returns:
-        pandas.DatetimeIndex or pandas.Timestamp: 
+        pandas.DatetimeIndex or pandas.Timestamp:
             DatetimeIndex with proleptic_gregorian calendar if input is array-like,
             or a single Timestamp if input is a single cftime object
     """
     # Check if input is a single cftime object (has year attribute directly)
     is_single_object = hasattr(cftime_times, 'year')
-    
+
     # If single object, convert it to a list with one element
     if is_single_object:
         cftime_list = [cftime_times]
     else:
         cftime_list = cftime_times
-    
+
     # Extract date components from cftime objects
     timestamps = []
     for t in cftime_list:
@@ -412,13 +412,13 @@ def convert_cftime_to_standard(cftime_times):
         }
         # Create a pandas timestamp with the same components (proleptic_gregorian)
         timestamps.append(pd.Timestamp(**dt_components))
-    
+
     # Return either a single Timestamp or a DatetimeIndex based on input type
     if is_single_object:
         return timestamps[0]
     else:
         return pd.DatetimeIndex(timestamps)
-    
+
 def subset_ds_geolimit(
         ds_in,
         config,
@@ -485,7 +485,7 @@ def subset_ds_geolimit(
     # Subset dataset
     ds_out = ds_in[subset_dict]
     # transpose coordinates to enesure LAT is always the 1st dimension
-    ds_out = ds_out.transpose(y_dimname,x_dimname)
+    ds_out = ds_out.transpose(..., y_dimname,x_dimname)
     # ds_out = ds_out.transpose(y_coordname,x_coordname) # maybe?
     return ds_out
 
