@@ -89,10 +89,10 @@ def trackclouds(
 
         # Open file
         reference_data = xr.open_dataset(
-            reference_file, mask_and_scale=False, decode_times=False, chunks=-1, cache=False,
+            reference_file, mask_and_scale=False, decode_times=False,
         )
-        reference_convcold_cloudnumber = reference_data[feature_varname].load().data
-        nreference = reference_data[nfeature_varname].load().data
+        reference_convcold_cloudnumber = reference_data[feature_varname].data
+        nreference = reference_data[nfeature_varname].data
         reference_data.close()
 
         ##########################################################
@@ -101,10 +101,10 @@ def trackclouds(
 
         # Open file
         new_data = xr.open_dataset(
-            new_file, mask_and_scale=False, decode_times=False, chunks=-1, cache=False,
+            new_file, mask_and_scale=False, decode_times=False,
         )
-        new_convcold_cloudnumber = new_data[feature_varname].load().data
-        nnew = new_data[nfeature_varname].load().data
+        new_convcold_cloudnumber = new_data[feature_varname].data
+        nnew = new_data[nfeature_varname].data
         new_data.close()
 
         # Convert float type to int, missing value to 0
